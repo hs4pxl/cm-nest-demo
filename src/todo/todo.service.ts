@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Todo } from './todo.entity';
+import * as uuid from 'uuid/v1';
 
 @Injectable()
 export class TodoService {
@@ -9,7 +10,7 @@ export class TodoService {
     addTodo(title:string, subtitle:string){
         console.log(`Title: ${title}, Subtile: ${subtitle}`)
         const todo = new Todo();
-        todo.id = "1";
+        todo.id = uuid();
         todo.title = title;
         todo.subtitle = subtitle;
         this.todoArray.push(todo);
