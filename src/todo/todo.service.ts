@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { Todo } from './todo.entity';
 import * as uuid from 'uuid/v1';
 
@@ -19,4 +19,16 @@ export class TodoService {
     getTodos(){
         return this.todoArray
     }
+
+    removeTodoById(id:string){
+
+        const found = this.todoArray.find(item=> item.id === id)
+        if (!found){
+            throw new NotFoundException(`Todo with ${id} not found`)
+        }
+
+        this.todoArray = this.todoArray.filter(item=>{return item.id !== id})
+        return this.todoArray
+    }
+
 }

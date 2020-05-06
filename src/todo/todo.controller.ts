@@ -20,7 +20,7 @@ export class TodoController {
     @Delete("/:id")
     deleteTodoById(@Param("id") id:string){
         console.log(`id: ${id}`)
-        return `id is ${id}`
+        return this.todoService.removeTodoById(id)
     }
 
 }
